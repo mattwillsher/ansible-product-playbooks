@@ -1,0 +1,40 @@
+---
+- name: Create database in PostgreSQL
+  hosts: $product
+  sudo_user: postgres
+  tasks:
+
+   - name: Create DB $product
+     postgresql_db: name=$product
+                 encoding=UTF8
+     delegate_to: ${${product}_database_server}
+
+   - name: Create DB user $product
+     postgresql_user: name=$product
+                      db=$product
+                      password=$PASSWORD(../../clients/$client_shortname/credentials/$product/database)
+     delegate_to: ${${product}_database_server}
+
+
+- name: Download and install
+  hosts: $product
+  vars:
+    rmiPort: ${${product}_rmiPort}
+    httpPort: ${${product}_httpPort}
+    installer: atlassian-${product}-${${product}_version}-x64.bin
+    url: http://www.atlassian.com/software/${product}/downloads/binary/$installer
+  tasks:
+
+    - name: Download $product
+      get_url: url=$url
+               dest=/var/tmp/$installer
+               mode=0644
+
+    - template: src=templates/response.varfile.j2
+                dest=/var/tmp/${product}-response.varfile
+
+    - file: path=/var/tmp/$installer
+            mode=0755
+
+    - command: /var/tmp/$installer -q -varfile /var/tmp/${product}-response.varfile
+               creates=/opt/atlassian/$product

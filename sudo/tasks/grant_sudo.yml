@@ -1,0 +1,6 @@
+---
+- name: Granting $name $target access via sudo
+  template: src=../../products/sudo/templates/grant_sudo.j2
+            dest=/etc/sudoers.d/${name}_${target}
+            owner=root
+            mode=0440

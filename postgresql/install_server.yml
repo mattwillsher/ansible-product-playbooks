@@ -1,0 +1,37 @@
+---
+- name: Install Postgres Server
+  hosts: postgresql-server
+  tasks:
+   - name: Install packages
+     yum: name=$item
+          state=installed
+     with_items:
+      - python-psycopg2
+      - postgresql-server
+      - postgresql
+  
+   - name: Initiate database
+     command: service postgresql initdb
+              creates=/var/lib/pgsql/data/postgresql.conf
+  
+   - name: Start PostgreSQL and enable at boot
+     service: name=postgresql
+              enabled=yes
+              state=started
+  
+   - name: Ensure PostgreSQL is listening on all localhost
+     lineinfile: dest=/var/lib/pgsql/data/postgresql.conf
+       regexp='^#?listen_addresses\s*='
+       line="listen_addresses = '127.0.0.1'"
+       state=present
+     notify: restart postgresql
+
+   - lineinfile: dest=/var/lib/pgsql/data/pg_hba.conf
+                 regexp='host\s+all\s+all\s+127.0.0.1/32\s+md5'
+                 line='host all all 127.0.0.1/32 md5'
+                 insertbefore=BOF
+     notify: restart postgresql
+
+  handlers:
+   - name: restart postgresql
+     service: name=postgresql state=restarted
