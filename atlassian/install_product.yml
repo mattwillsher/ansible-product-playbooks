@@ -12,7 +12,7 @@
    - name: Create DB user $product
      postgresql_user: name=$product
                       db=$product
-                      password=$PASSWORD(../../clients/$client_shortname/credentials/$product/database)
+                      password=$PASSWORD(../../clients/$client_shortname/credentials/$client_environment/$product/database)
      delegate_to: ${${product}_database_server}
 
 

@@ -1,4 +1,4 @@
-This repo contains largely generic playbooks. 
+his repo contains largely generic playbooks. 
 
 It is expected this repo lives in a folder called products alongside another called clients, where the client specific playbooks live. E.g
 
@@ -12,6 +12,8 @@ clients/
 ```
 
 A variable, <code>$client_shortname</code>, must be defined for all hosts.
+<code>$client_environment</code> should also be set to indicate the environment of the servers.
+
 To setup the default client folder run, in the folder above products:
 
 ```
