@@ -13,6 +13,7 @@ Vagrant::Config.run do |config|
 {% endif %}
   # config.vm.forward_port 80, 8080
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  # config.vm.customize ["modifyvm", :id, "--memory", 1024]
 
   config.vm.provision :ansible do |ansible|
     ansible.hosts = 'all'

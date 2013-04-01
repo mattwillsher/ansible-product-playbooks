@@ -3,8 +3,10 @@ Vagrant playbook
 
 This playbook is for managing vagrant. 
 
+TODO: This needs to be more generic and make use of the contents of the clients/ tree. 
+
 create_ansible_dev_env.yml
--------------------
+--------------------------
 
 TODO: Do full vagrant setup and install for MacOS & Linux
 
