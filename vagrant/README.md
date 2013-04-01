@@ -29,6 +29,7 @@ Parameters
 
 The following parameters can be specified on the command line or in an inventory file:
 
+* client_shortname - the short name of the client/customer/organisation the environment is for. Default is 'default'
 * vagrantdir - directory name in which the various files for this installation are placed. e.g. ubuntu-12.04-amd64
 * vagrantbox - the name of vagrant box to use. e.g. precise-server-cloudimg-vagrant-amd64-disk1
 * vagrantboxurl - the URL to download the vagrant box from if not present as the name given in $vagrantbox.
@@ -39,8 +40,9 @@ e.g
 ```
 ansible-playbook -i playbooks/vagrant/inventory/centos-6.4-x86_64.ini \
 playbooks/vagrant/create_ansible_dev_env.yml \
+-e client_shortname=contos \
 -e vagrantdir=mydevvm \
 -e vagranthostonlyip=192.168.33.200
 ```
 
-Will create a new CentOS 6.4 x86_64 VM with a host only IP of 192.168.33.200 and an appropriate inventory file in the vagrant/mydevvm directory.
+Will create a new CentOS 6.4 x86_64 VM with a host only IP of 192.168.33.200 and an appropriate inventory file in the vagrant/mydevvm directory, with a default inventory.ini containing the client_shortname=contos.
