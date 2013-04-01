@@ -1,6 +1,6 @@
 ---
 - name: Install Postgres Server
-  hosts: postgresql-server
+  hosts: postgresql_server
   tasks:
    - name: Install packages
      yum: name=$item
