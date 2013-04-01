@@ -12,6 +12,11 @@ clients/
 ```
 
 A variable, <code>$client_shortname</code>, must be defined for all hosts.
+To setup the default client folder run, in the folder above products:
+
+```
+ansible-playbook -i products/default_client/inventory.ini products/default_client/setup.yml
+```
 
 Playbooks are pretty CentOS/RHEL specific at the moment.
 

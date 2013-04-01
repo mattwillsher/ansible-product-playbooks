@@ -1,0 +1,16 @@
+---
+- name: Server take-on
+  hosts: all
+  tasks:
+   - name: EPEL
+     command: /bin/rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+              creates=/etc/yum.repos.d/epel.repo
+
+   - name: Install software
+     yum: name=$item state=installed
+     with_items:
+      - openssh-clients
+
+   - name: Disable iptables. TODO Create an iptables playbook!
+     service: name=iptables state=stopped enabled=no
+

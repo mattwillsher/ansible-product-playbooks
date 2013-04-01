@@ -16,5 +16,5 @@
       template: src=templates/inventory.j2
                 dest=$vagrantpath/inventory.ini
     - name: Copy playbook
-      copy: src=files/playbook.yml
-            dest=$vagrantpath/playbook.yml
+      template: src=templates/playbook.yml.j2
+                dest=$vagrantpath/playbook.yml

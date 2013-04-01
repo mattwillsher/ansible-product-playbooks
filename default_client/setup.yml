@@ -1,0 +1,9 @@
+- name: Setup Vagrant environment
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+  tasks:
+   - file: path=../../clients/default
+           state=directory
+   - copy: dest=../../clients/default/takeon_server.yml
+           src=../../products/default_client/files/takeon_server.yml
