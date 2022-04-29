@@ -1,4 +1,4 @@
-his repo contains largely generic playbooks. 
+This repo contains largely generic playbooks. 
 
 It is expected this repo lives in a folder called products alongside another called clients, where the client specific playbooks live. E.g
 
