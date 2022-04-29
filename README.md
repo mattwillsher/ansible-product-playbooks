@@ -37,5 +37,4 @@ Creates a vagrant folder at the top level with a configuration suitable for ansi
 
 Authors
 -------
-
-Matthew Willsher <matt@monki.org.uk>
+Matt Willsher
